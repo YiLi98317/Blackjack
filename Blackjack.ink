@@ -1,6 +1,7 @@
 VAR setting = ""
 VAR character = ""
 VAR story_start = ""
+VAR setting_related_choices = ""
 VAR story_conflict = ""
 VAR story_end = ""
 VAR win = 0
@@ -123,7 +124,7 @@ You have four cards in your hand and you chose:
 == next3
 +[Round 4]-> Round4
 
-+[Round 4.1] -> Round4_1
++[Round 4_1] -> Round4_1
 
 //setting_related_choices
 == Round4_1
@@ -132,24 +133,40 @@ You Played the Blackjack.
 {~You lost. ->Lost4_1|You won. ->Won4_1}
 
 == Lost4_1
-~ story_conflict = "{~K|8}"
+~ setting_related_choices = "{~A|J|3|6|}"
 
-Your opponent has won. He has two cards in his hand and he has chosen: {story_conflict}.
+Your opponent has won. He has two cards in his hand and he has chosen: {setting_related_choices}.
 -> next4_1
 
 == Won4_1
 ~win++
-You have two cards in your hand and you chose:
+You have four cards in your hand and you chose:
 
-* K {set_setting_related_choices("K")} 
+* A {set_setting_related_choices("A")} 
 ->next4_1
-* 8 {set_setting_related_choices(8)} 
+* J {set_setting_related_choices("J")} 
+->next4_1
+* 3 {set_setting_related_choices(3)} 
+->next4_1
+* 6 {set_setting_related_choices(6)} 
 ->next4_1
 
 
 ==function set_setting_related_choices(x)
-~ story_conflict = x
+~ setting_related_choices = x
+
 == next4_1
+// Narrative transition related to the selected setting
+(Just example!!)There is an oil painting on the wall, which is different from other extravagant and magnificent decorations. 
+
+It is just a landscape painting depicting a peaceful village. I was a little lost because it reminded me of my hometown.
+
+{ setting:
+- "A": 	You developed a gambling addiction.
+- "J": 	The screen is playing Star Wars: The Phantom Menace.
+- 3: 	There was a terrorist attack in the amusement park.
+- 6: You ordered a glass of ice American and drank with relish.
+}
 +[Round 5]-> Round5
 
 == Round4
